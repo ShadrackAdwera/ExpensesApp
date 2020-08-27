@@ -6,7 +6,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   final List<Transaction> transactions = [
     Transaction('t1', 'Breakfast', 200.2, DateTime.now()),
     Transaction('t2', 'Lunch', 100.8, DateTime.now())
@@ -31,8 +30,12 @@ class MyApp extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(
-              child: Text('Expenses List'),
+            Column(
+              children: transactions
+                  .map((tx) => Card(
+                        child: Text(tx.name),
+                      ))
+                  .toList(),
             )
           ],
         ),
