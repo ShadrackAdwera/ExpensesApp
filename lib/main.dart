@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
             'My Expenses',
             style: TextStyle(color: Colors.yellow),
           ),
+          backgroundColor: Colors.black87,
         ),
         body: Column(
           children: [
@@ -32,27 +33,39 @@ class MyApp extends StatelessWidget {
             ),
             Column(
               children: transactions
-                  .map((tx) => Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.yellowAccent, width: 2),
+                  .map(
+                    (tx) => Card(
+                        color: Colors.black87,
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.yellowAccent, width: 2),
+                              ),
+                              child: Text(
+                                tx.amount.toString(),
+                                style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold),
+                              ),
                             ),
-                            child: Text(
-                              tx.amount.toString(),
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Text(tx.name),
-                              Text(tx.date.toString()),
-                            ],
-                          )
-                        ],
-                      ))
+                            Column(
+                              children: [
+                                Text(
+                                  tx.name,
+                                  style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold), 
+                                ),
+                                Text(
+                                  tx.date.toString(),
+                                  style: TextStyle(color: Colors.yellowAccent),
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
+                  )
                   .toList(),
             )
           ],
