@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,8 +15,15 @@ class MyApp extends StatelessWidget {
             style: TextStyle(color: Colors.yellow),
           ),
         ),
-        body: Center(
-          child: Text('Widget Play ground'),
+        body: Column(
+          children: [
+            Card(
+              child: Text('Chart Card'),
+            ),
+            Card(
+              child: Text('Expenses List'),
+            )
+          ],
         ),
       ),
     );
