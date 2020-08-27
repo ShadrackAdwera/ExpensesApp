@@ -35,6 +35,12 @@ class MyApp extends StatelessWidget {
                   .map((tx) => Row(
                         children: [
                           Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.yellowAccent, width: 2),
+                            ),
                             child: Text(
                               tx.amount.toString(),
                             ),
