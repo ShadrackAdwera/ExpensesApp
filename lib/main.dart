@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import './transaction.dart';
 
 void main() {
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
                     (tx) => Card(
                         color: Colors.black87,
                         child: Row(
+                          
                           children: [
                             Container(
                               padding: EdgeInsets.all(10),
@@ -47,19 +50,20 @@ class MyApp extends StatelessWidget {
                                     color: Colors.yellowAccent, width: 2),
                               ),
                               child: Text(
-                                tx.amount.toString(),
-                                style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold),
+                                'Ksh. ${tx.amount.toString()}' ,
+                                style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   tx.name,
-                                  style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold), 
+                                  style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold, fontSize: 18), 
                                 ),
                                 Text(
-                                  tx.date.toString(),
-                                  style: TextStyle(color: Colors.yellowAccent),
+                                  DateFormat().format(tx.date),
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ],
                             )
