@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black87,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               width: double.infinity,
@@ -33,13 +34,34 @@ class MyApp extends StatelessWidget {
                 elevation: 5,
               ),
             ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                    ),
+                    RaisedButton(
+                      child: Text('Add Transaction'),
+                      onPressed: () {},
+                      color: Colors.black87,
+                      textColor: Colors.yellowAccent,
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Column(
               children: transactions
                   .map(
                     (tx) => Card(
                         color: Colors.black87,
                         child: Row(
-                          
                           children: [
                             Container(
                               padding: EdgeInsets.all(10),
@@ -50,8 +72,11 @@ class MyApp extends StatelessWidget {
                                     color: Colors.yellowAccent, width: 2),
                               ),
                               child: Text(
-                                'Ksh. ${tx.amount.toString()}' ,
-                                style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold, fontSize: 16),
+                                'Ksh. ${tx.amount.toString()}',
+                                style: TextStyle(
+                                    color: Colors.yellowAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
                               ),
                             ),
                             Column(
@@ -59,7 +84,10 @@ class MyApp extends StatelessWidget {
                               children: [
                                 Text(
                                   tx.name,
-                                  style: TextStyle(color: Colors.yellowAccent, fontWeight: FontWeight.bold, fontSize: 18), 
+                                  style: TextStyle(
+                                      color: Colors.yellowAccent,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
                                 ),
                                 Text(
                                   DateFormat().format(tx.date),
