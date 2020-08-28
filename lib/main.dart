@@ -33,6 +33,15 @@ class MyApp extends StatelessWidget {
             UserTransactions(),
           ],
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(
+            Icons.add,
+            color: Colors.black87,
+          ),
+          backgroundColor: Colors.yellowAccent,
+          onPressed: () {},
+        ),
       ),
     );
   }
