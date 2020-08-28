@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './widgets/transaction_list.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -31,7 +29,6 @@ class MyApp extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            TransactionList()
           ],
         ),
       ),
