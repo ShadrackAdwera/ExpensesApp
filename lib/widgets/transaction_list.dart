@@ -25,7 +25,7 @@ class TransactionList extends StatelessWidget {
                       border: Border.all(color: Colors.yellowAccent, width: 2),
                     ),
                     child: Text(
-                      'Ksh. ${userTransactions[index].amount.toString()}',
+                      'Ksh. ${userTransactions[index].amount.toStringAsFixed(2)}',
                       style: TextStyle(
                           color: Colors.yellowAccent,
                           fontWeight: FontWeight.bold,

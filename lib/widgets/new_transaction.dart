@@ -32,13 +32,13 @@ class NewTransaction extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
               keyboardType: TextInputType.text,
-              onSubmitted: (_) => submitData,
+              onSubmitted: (_) => submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData,
+              onSubmitted: (_) => submitData(),
             ),
             FlatButton(
               child: Text('Add Transaction'),
