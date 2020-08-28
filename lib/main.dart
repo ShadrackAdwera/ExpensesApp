@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: Colors.black87,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: ListView(
           children: [
             Container(
               width: double.infinity,
