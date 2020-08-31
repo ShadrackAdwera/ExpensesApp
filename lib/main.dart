@@ -22,10 +22,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                ),
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
         ),
       ),
@@ -50,9 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addTransaction(String txTitle, double txAmount) {
+  void _addTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTransaction =
-        Transaction(Random().toString(), txTitle, txAmount, DateTime.now());
+        Transaction(Random().toString(), txTitle, txAmount, chosenDate);
     setState(() {
       _userTransactions.add(newTransaction);
     });
