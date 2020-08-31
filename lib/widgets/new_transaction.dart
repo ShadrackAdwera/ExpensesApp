@@ -14,7 +14,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final amountController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
@@ -23,8 +23,11 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.inputController(enteredTitle, enteredAmount);
-
     Navigator.of(context).pop();
+  }
+
+  void _displayDatePicker() {
+    showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2020), lastDate: DateTime.now());
   }
 
   @override
@@ -40,13 +43,13 @@ class _NewTransactionState extends State<NewTransaction> {
               decoration: InputDecoration(labelText: 'Expense'),
               controller: titleController,
               keyboardType: TextInputType.text,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             Container(
               height: 70,
@@ -54,7 +57,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 children: [
                   Text('No date chosen: '),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: _displayDatePicker,
                     child: Text('Chose Date: ', style: TextStyle(fontWeight: FontWeight.bold),),
                     textColor: Theme.of(context).primaryColorDark,
                   ),
@@ -65,7 +68,7 @@ class _NewTransactionState extends State<NewTransaction> {
               child: Text('Add Transaction', style: TextStyle(fontWeight: FontWeight.bold),),
               color: Theme.of(context).accentColor,
               textColor: Theme.of(context).primaryColorDark,
-              onPressed: submitData,
+              onPressed: _submitData,
             ),
           ],
         ),
