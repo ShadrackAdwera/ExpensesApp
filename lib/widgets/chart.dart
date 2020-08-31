@@ -15,15 +15,18 @@ class Chart extends StatelessWidget {
         if (recentTransactions[i].date.day == weekDay.day &&
             recentTransactions[i].date.month == weekDay.month &&
             recentTransactions[i].date.year == weekDay.year) {
-              totalSum+=recentTransactions[i].amount;
-            }
+          totalSum += recentTransactions[i].amount;
+        }
       }
-      return {'day': DateFormat.E(weekDay), 'amount': totalSum};
+      print(DateFormat.E().format(weekDay));
+      print(totalSum);
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactions);
     return Card(
       elevation: 8,
       margin: EdgeInsets.all(20),

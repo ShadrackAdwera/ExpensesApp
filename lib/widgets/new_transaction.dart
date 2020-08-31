@@ -37,7 +37,7 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(labelText: 'Expense'),
               controller: titleController,
               keyboardType: TextInputType.text,
               onSubmitted: (_) => submitData(),
