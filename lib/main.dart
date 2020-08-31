@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         accentColor: Colors.amber,
+        errorColor: Colors.red,
         fontFamily: 'Quicksand',
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addTransaction(String txTitle, double txAmount, DateTime chosenDate) {
     final newTransaction =
-        Transaction(Random().toString(), txTitle, txAmount, chosenDate);
+        Transaction(DateTime.now().toString(), txTitle, txAmount, chosenDate);
     setState(() {
       _userTransactions.add(newTransaction);
     });
@@ -65,6 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: [
           Chart(_recentTransactions),
-          TransactionList(_userTransactions),
+          TransactionList(_userTransactions, _deleteTransaction),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
