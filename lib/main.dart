@@ -4,6 +4,7 @@ import 'dart:math';
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
+import './widgets/chart.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,6 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // Transaction('t1', 'Breakfast', 200.2, DateTime.now()),
     // Transaction('t2', 'Lunch', 100.8, DateTime.now())
   ];
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    });
+  }
 
   void _addTransaction(String txTitle, double txAmount) {
     final newTransaction =
@@ -70,13 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text('Chart Card'),
-              elevation: 5,
-            ),
-          ),
+          Chart(_recentTransactions),
           TransactionList(_userTransactions),
         ],
       ),
