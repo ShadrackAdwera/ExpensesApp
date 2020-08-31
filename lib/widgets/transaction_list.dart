@@ -29,41 +29,25 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                    child: Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorDark,
-                        border: Border.all(
-                            width: 2,
-                            color: Theme.of(context).primaryColorDark),
-                      ),
-                      child: Text(
-                        'Ksh. ${userTransactions[index].amount.toStringAsFixed(2)}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Theme.of(context).accentColor),
-                      ),
+                  margin: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+                  elevation: 5,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                          padding: EdgeInsets.all(6),
+                          child: FittedBox(
+                              child: Text(
+                                  'Ksh. ${userTransactions[index].amount}'))),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          userTransactions[index].name,
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                        Text(
-                          DateFormat().format(userTransactions[index].date),
-                          style: TextStyle(color: Colors.blueGrey),
-                        ),
-                      ],
-                    )
-                  ],
-                ));
+                    title: Text(
+                      '${userTransactions[index].name}',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                        '${DateFormat().format(userTransactions[index].date)}'),
+                  ),
+                );
               },
               itemCount: userTransactions.length,
             ),
