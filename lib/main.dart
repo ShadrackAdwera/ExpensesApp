@@ -9,47 +9,50 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Personal Expenses',
+      theme: ThemeData(primarySwatch: Colors.green, accentColor: Colors.amber),
+      home: MyHomePage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  final List<Transaction> _userTransactions = [
+class MyHomePage extends StatefulWidget {
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+final List<Transaction> _userTransactions = [
     Transaction('t1', 'Breakfast', 200.2, DateTime.now()),
     Transaction('t2', 'Lunch', 100.8, DateTime.now())
   ];
 
   void _addTransaction(String txTitle, double txAmount) {
-    final newTransaction =
-        Transaction(Random().toString(), txTitle, txAmount, DateTime.now());
+    final newTransaction = Transaction(Random().toString(), txTitle, txAmount, DateTime.now() );
     setState(() {
       _userTransactions.add(newTransaction);
     });
   }
 
-  void _startAddNewTransaction(BuildContext ctx) {
-    showModalBottomSheet(
-        context: ctx,
-        builder: (_) {
-          return GestureDetector(
-            child: NewTransaction(_addTransaction),
-            behavior: HitTestBehavior.opaque,
-            onTap: () {},
-          );
-        });
+  void _startAddNewTransaction(BuildContext ctx ) {
+    showModalBottomSheet(context: ctx, builder: (_) {
+      return NewTransaction(_addTransaction);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+      return Scaffold(
         appBar: AppBar(
           title: Text(
-            'My Expenses',
-            style: TextStyle(color: Colors.yellow),
+            'Personal Expenses',
           ),
-          backgroundColor: Colors.black87,
         ),
         body: ListView(
           children: [
@@ -67,12 +70,9 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.add,
-            color: Colors.black87,
           ),
-          backgroundColor: Colors.yellowAccent,
           onPressed: () => _startAddNewTransaction(context),
         ),
-      ),
-    );
+      );
   }
 }

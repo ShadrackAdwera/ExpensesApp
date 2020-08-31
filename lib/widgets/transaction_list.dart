@@ -15,41 +15,39 @@ class TransactionList extends StatelessWidget {
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
-              color: Colors.black87,
               child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColorDark,
+                  border: Border.all(
+                      width: 2, color: Theme.of(context).primaryColorDark),
+                ),
+                child: Text(
+                  'Ksh. ${userTransactions[index].amount.toStringAsFixed(2)}',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Theme.of(context).accentColor),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.yellowAccent, width: 2),
-                    ),
-                    child: Text(
-                      'Ksh. ${userTransactions[index].amount.toStringAsFixed(2)}',
-                      style: TextStyle(
-                          color: Colors.yellowAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
+                  Text(
+                    userTransactions[index].name,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Theme.of(context).primaryColorDark),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        userTransactions[index].name,
-                        style: TextStyle(
-                            color: Colors.yellowAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                      Text(
-                        DateFormat().format(userTransactions[index].date),
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  )
+                  Text(
+                    DateFormat().format(userTransactions[index].date),
+                    style: TextStyle(color: Colors.blueGrey),
+                  ),
                 ],
-              ));
+              )
+            ],
+          ));
         },
         itemCount: userTransactions.length,
       ),

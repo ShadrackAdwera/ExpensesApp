@@ -23,6 +23,8 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.inputController(enteredTitle, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -49,8 +51,6 @@ class _NewTransactionState extends State<NewTransaction> {
             FlatButton(
               child: Text('Add Transaction'),
               onPressed: submitData,
-              color: Colors.black87,
-              textColor: Colors.yellowAccent,
             ),
           ],
         ),
