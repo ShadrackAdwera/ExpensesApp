@@ -109,7 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 MediaQuery.of(context).padding.top) *
             0.7,
         child: TransactionList(_userTransactions, _deleteTransaction));
-    final appBody = ListView(
+    final appBody = SafeArea(
+        child: ListView(
       children: [
         if (isLandScape)
           Row(
@@ -146,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               : txWidget
       ],
-    );
+    ));
     return Platform.isIOS
         ? CupertinoPageScaffold(
             child: appBody,
