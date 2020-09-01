@@ -86,7 +86,18 @@ class _MyHomePageState extends State<MyHomePage> {
     final isLandScape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar()
+        ? CupertinoNavigationBar(
+            middle: Text('Personal Expenses'),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  child: Icon(CupertinoIcons.add),
+                  onTap: () => _startAddNewTransaction(context),
+                )
+              ],
+            ),
+          )
         : AppBar(
             title: Text(
               'Personal Expenses',
@@ -146,12 +157,14 @@ class _MyHomePageState extends State<MyHomePage> {
             body: appBody,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: FloatingActionButton(
-              child: Icon(
-                Icons.add,
-              ),
-              onPressed: () => _startAddNewTransaction(context),
-            ),
+            floatingActionButton: Platform.isIOS
+                ? Container()
+                : FloatingActionButton(
+                    child: Icon(
+                      Icons.add,
+                    ),
+                    onPressed: () => _startAddNewTransaction(context),
+                  ),
           );
   }
 }
