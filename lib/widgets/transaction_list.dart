@@ -11,52 +11,50 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 600,
-      child: userTransactions.isEmpty
-          ? Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                    height: 200,
-                    child: Image.asset(
-                      'assets/images/waiting.png',
-                      fit: BoxFit.cover,
-                    ))
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (ctx, index) {
-                return Card(
-                  margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  elevation: 8,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                          padding: EdgeInsets.all(6),
-                          child: FittedBox(
-                              child: Text(
-                                  'Ksh. ${userTransactions[index].amount}'))),
-                    ),
-                    title: Text(
-                      '${userTransactions[index].name}',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    subtitle: Text(
-                        '${DateFormat().add_yMMMMd().format(userTransactions[index].date)}'),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                      onPressed: () => _removeTransaction(userTransactions[index].id),
-                    ),
+    return userTransactions.isEmpty
+        ? Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 200,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ))
+            ],
+          )
+        : ListView.builder(
+            itemBuilder: (ctx, index) {
+              return Card(
+                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                elevation: 8,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                        padding: EdgeInsets.all(6),
+                        child: FittedBox(
+                            child: Text(
+                                'Ksh. ${userTransactions[index].amount}'))),
                   ),
-                );
-              },
-              itemCount: userTransactions.length,
-            ),
-    );
+                  title: Text(
+                    '${userTransactions[index].name}',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  subtitle: Text(
+                      '${DateFormat().add_yMMMMd().format(userTransactions[index].date)}'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () =>
+                        _removeTransaction(userTransactions[index].id),
+                  ),
+                ),
+              );
+            },
+            itemCount: userTransactions.length,
+          );
   }
 }
