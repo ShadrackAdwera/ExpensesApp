@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -83,26 +86,40 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'Date Chosen: ${DateFormat().add_yMMMMd().format(_selectedDate)}',
                       ),
                     ),
-                    FlatButton(
-                      onPressed: _displayDatePicker,
-                      child: Text(
-                        'Chose Date: ',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      textColor: Theme.of(context).primaryColorDark,
-                    ),
+                    Platform.isIOS
+                        ? CupertinoButton(
+                            child: Text(
+                              'Chose Date: ',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: _displayDatePicker)
+                        : FlatButton(
+                            onPressed: _displayDatePicker,
+                            child: Text(
+                              'Chose Date: ',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            textColor: Theme.of(context).primaryColorDark,
+                          ),
                   ],
                 ),
               ),
-              RaisedButton(
-                child: Text(
-                  'Add Transaction',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                color: Theme.of(context).accentColor,
-                textColor: Theme.of(context).primaryColorDark,
-                onPressed: _submitData,
-              ),
+              Platform.isIOS
+                  ? CupertinoButton(
+                      child: Text(
+                        'Add Transaction',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: _submitData)
+                  : RaisedButton(
+                      child: Text(
+                        'Add Transaction',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      color: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).primaryColorDark,
+                      onPressed: _submitData,
+                    ),
             ],
           ),
         ),
